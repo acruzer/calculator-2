@@ -7,24 +7,33 @@ calculator program yourself in this file.
 from arithmetic import *
 
 
-# Your code goes here
-# input_string = input ("Enter you Calculation:")
-
-# token = input_string.split(" ")
 def input_string():
+	"""This function takes in a string and splits it into a list
+	and returns that list."""
 	input_string = input ("Enter your Calculation: ")
 	token = input_string.split(" ")
 	
 	return token
 
-def calculator():
-
-	while True:
-		token = input_string()	
+def check_len():
+	"""Checks the length of the list returned from input_string function
+	and assigns variables and returns them."""
+	operator, num1, num2 = None, None, None
+	token = input_string()
+	if len(token) >= 1:
 		operator = token[0]
+	if len(token) >= 2:
 		num1 = int(token[1])
-		num2 = int(token[2])	
-		
+	if len(token) >= 3:
+		num2 = int(token[2])
+	return operator, num1, num2
+
+
+def calculator():
+	"""Performs calculations based on variables from check_len function."""
+	while True:	
+		operator, num1, num2 = check_len()
+
 		if operator == "+":
 			result = add (num1, num2)
 				
@@ -34,15 +43,25 @@ def calculator():
 		elif operator == "*":
 			result = multiply (num1, num2)
 
+		elif operator == "/":
+			result = divide (num1, num2)
+
+		elif operator == "square":
+			result = square (num1)
+
+		elif operator == "cube":
+			result = cube (num1)
+
+		elif operator == "pow":
+			result = power (num1, num2)
+
+		elif operator == "mod":
+			result = mod(num1, num2)
+
 		elif operator == "q":
 			break
 
-		# input_string = input ("Enter you Calculation: ")
-		# token = input_string.split(" ")
 
-		# print (token)
 		print (result)
-	# input_string()
 
-# input_string()
 calculator()
